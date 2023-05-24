@@ -11,7 +11,7 @@ class ConfigController {
     const value = await this.ddbService.updateVal(username);
 
     const body = gradientBadge({
-      subject: "👀 qeo_profile_views",
+      subject: "👀 Github Profile Views",
       status: value.toLocaleString("de-DE"),
       style: undefined, // 'flat' or undefined, optional
       gradient: ["b65cff", "11cbfa"], // array of colors (Hexadecimal or name)

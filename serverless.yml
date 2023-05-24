@@ -1,23 +1,27 @@
 org: tvqqq
-app: qeo-express-serverless
-service: qeo-express-serverless
+app: profile-counter
+service: profile-counter
 frameworkVersion: "3"
+configValidationMode: warn
 
 provider:
   name: aws
-  runtime: nodejs16.x
+  runtime: nodejs18.x
   region: ap-southeast-1
   timeout: 30
   environment:
-    MONGODB_URL: ${param:MONGODB_URL}
+    DDB_TABLE_NAME: ${param:DDB_TABLE_NAME}
+
+plugins:
+  - serverless-iam-roles-per-function
 
 functions:
   api:
     handler: handler.serverless
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - dynamodb:*
+        Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.DDB_TABLE_NAME}"
     events:
       - httpApi: "*"
-
-  # cronJob:
-  #   handler: handler.cron
-  #   events:
-  #     - schedule: cron(00 14 * * ? *) # 21h UTC+7 = 14

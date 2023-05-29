@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.338.0",
-    "@aws-sdk/util-dynamodb": "^3.338.0",
+    "@aws-sdk/util-dynamodb": "^3.341.0",
     "aws-xray-sdk": "^3.4.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
